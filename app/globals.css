@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Light theme */
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 215 20.2% 65.1%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  html.dark {
+    /* Dark mode overrides */
+    --background: 222.2 47.4% 11.2%;
+    --foreground: 0 0% 100%;
+
+    --card: 222.2 47.4% 11.2%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 222.2 47.4% 11.2%;
+    --popover-foreground: 0 0% 100%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer components {
+  /* Card component style */
+  .card {
+    @apply bg-card rounded-lg shadow-lg p-6;
+  }
+
+  /* Calendar large size variable overrides */
+  .calendar-large {
+    /* Increase DayPicker cell size for large layout */
+    --rdp-cell-size: 4rem;
+    --rdp-caption-font-size: 1.75rem;
+  }
+
+  @media (max-width: 1024px) {
+    .calendar-large {
+      --rdp-cell-size: 3rem;
+      --rdp-caption-font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .calendar-large {
+      --rdp-cell-size: 2.5rem;
+      --rdp-caption-font-size: 1.25rem;
+    }
+  }
+
+  .calendar-large .rdp-day_button {
+    @apply text-base lg:text-lg;
+  }
+
+  .calendar-large .rdp-months {
+    @apply gap-6;
+  }
+}
+
+@layer components {
+  /* Heat-map shading classes */
+  .heat-1 {
+    background-color: hsl(var(--primary) / 0.3);
+  }
+  .heat-3 {
+    background-color: hsl(var(--primary) / 0.5);
+  }
+  .heat-5 {
+    background-color: hsl(var(--primary) / 0.8);
+  }
+}
+
+@layer components {
+  /* 3D cylinder style “button” */
+  .btn-3d {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 2.5rem;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    box-shadow: 0 8px 0 hsl(var(--primary) / 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+  }
+
+  .btn-3d:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 0 hsl(var(--primary) / 0.9);
+  }
+
+  .btn-3d:active {
+    transform: translateY(4px);
+    box-shadow: none;
+  }
+}
+
+@layer components {
+  /* Progress cylinder / bottle style */
+  .progress-cylinder-container {
+    position: relative;
+    width: 3.5rem;
+    height: 9rem;
+    background: radial-gradient(circle at 50% 10%, hsl(var(--card) / 0.95), hsl(var(--card) / 0.85));
+    border-radius: 1.75rem;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    transition: transform 0.2s ease-out;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .progress-cylinder-inner {
+    width: 80%;
+    height: 100%;
+    position: relative;
+    border-radius: 1.4rem 1.4rem 0 0;
+    overflow: hidden;
+  }
+
+  .progress-cylinder-liquid {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(to top, hsl(var(--primary) / 1), hsl(var(--primary) / 0.85));
+    transition: height 0.6s ease-in-out;
+  }
+
+  .progress-cylinder-label {
+    position: absolute;
+    top: 0.6rem;
+    width: 100%;
+    text-align: center;
+    font-size: 0.8rem;
+    color: hsl(var(--foreground));
+    font-weight: 600;
+    pointer-events: none;
+  }
+
+  @media (min-width: 768px) {
+    .progress-cylinder-container {
+      width: 4rem;
+      height: 10rem;
+    }
+  }
+}
