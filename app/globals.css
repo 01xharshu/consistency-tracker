@@ -86,7 +86,7 @@
 @layer components {
   .card {
     @apply bg-card rounded-lg p-4 sm:p-6;
-    /* simplified shadow for mobile friendly UI */
+    
     @apply shadow-md;
   }
 
