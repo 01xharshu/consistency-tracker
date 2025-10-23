@@ -28,9 +28,6 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressCylinderProps>(
             style={{ height: `${pct}%` }}
           />
         </div>
-        <div className="progress-cylinder-label">
-          {Math.floor(pct)}%
-        </div>
       </div>
     );
   }

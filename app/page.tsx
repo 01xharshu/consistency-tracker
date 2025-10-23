@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Calendar } from "@/components/ui/calendar";
 import { toast } from "sonner";
+import { PencilIcon } from "lucide-react";
 
 import GoalDialog from "@/components/GoalDialog";
 import RulesDialog from "@/components/RulesDialog";
@@ -63,7 +64,6 @@ export default function Home() {
     [doneKeys]
   );
 
-  // Heat-map logic (if you still keep it)
   const heatMap = useMemo(() => {
     const map = new Map<string, number>();
     let consecutive = 0;
@@ -130,26 +130,34 @@ export default function Home() {
   }
 
   return (
-    <div className="flex-col flex items-center justify-center min-h-screen mx-auto p-6 space-y-8 max-w-3xl">
-      <header className="text-center space-y-4">
-        <h1 className="text-3xl lg:text-4xl font-semibold">
-          Consistency Tracker
-        </h1>
-        <p className="text-lg text-muted-foreground">
-          Goal:<br />
-          <span className="font-medium text-xl">{goal || "— not set —"}</span>
-        </p>
-        {goal && (
-          <Button size="sm" variant="secondary" onClick={() => setEditingGoal(true)}>
-            Edit Goal
-          </Button>
-        )}
+    <div className="flex flex-col items-center justify-center min-h-screen mx-auto p-4 sm:p-6 space-y-6 max-w-lg sm:max-w-3xl">
+      <header className="text-center space-y-3">
+        <h1 className="text-3xl sm:text-4xl font-semibold">Consistency Tracker</h1>
+        <div className="flex items-center justify-center gap-2">
+          <p className="text-lg text-muted-foreground">
+            Goal: <span className="font-medium text-xl">{goal || "— not set —"}</span>
+          </p>
+          {goal && (
+            <Button
+              size="sm"
+              variant="secondary"
+              className="flex items-center gap-1"
+              onClick={() => setEditingGoal(true)}
+            >
+              <PencilIcon className="size-4" />
+              <span className="hidden sm:inline">Edit Goal</span>
+            </Button>
+          )}
+        </div>
       </header>
 
       {/* Progress below goal */}
-      <section className="w-full text-center space-y-2">
-        <Progress value={pct} className="h-4 lg:h-6 w-full max-w-xl mx-auto" />
-        <p className="text-sm lg:text-base">
+      <section className="w-full text-center">
+        <Progress
+          value={pct}
+          className="h-3 sm:h-4 w-full max-w-xl mx-auto progress-3d"
+        />
+        <p className="text-sm sm:text-base mt-2">
           {Math.floor(pct)}% toward 30-day streak ({streak}/30)
         </p>
       </section>
@@ -167,12 +175,15 @@ export default function Home() {
       </section>
 
       {/* Calendar */}
-      <section aria-label="Calendar" className="card p-4 w-full max-w-4xl">
+      <section
+        aria-label="Calendar"
+        className="card p-4 w-full max-w-full overflow-hidden"
+      >
         <Calendar
           mode="multiple"
           selected={[...doneKeys].map((k) => new Date(k))}
           disabled={{ after: new Date() }}
-          className="calendar-large"
+          className="calendar-large w-full"
           heatMap={heatMap}
         />
       </section>

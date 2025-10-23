@@ -43,7 +43,6 @@
   }
 
   html.dark {
-    /* Dark mode overrides */
     --background: 222.2 47.4% 11.2%;
     --foreground: 0 0% 100%;
 
@@ -85,14 +84,13 @@
 }
 
 @layer components {
-  /* Card component style */
   .card {
-    @apply bg-card rounded-lg shadow-lg p-6;
+    @apply bg-card rounded-lg p-4 sm:p-6;
+    /* simplified shadow for mobile friendly UI */
+    @apply shadow-md;
   }
 
-  /* Calendar large size variable overrides */
   .calendar-large {
-    /* Increase DayPicker cell size for large layout */
     --rdp-cell-size: 4rem;
     --rdp-caption-font-size: 1.75rem;
   }
@@ -116,12 +114,11 @@
   }
 
   .calendar-large .rdp-months {
-    @apply gap-6;
+    @apply gap-4;
   }
 }
 
 @layer components {
-  /* Heat-map shading classes */
   .heat-1 {
     background-color: hsl(var(--primary) / 0.3);
   }
@@ -134,7 +131,6 @@
 }
 
 @layer components {
-  /* 3D cylinder style “button” */
   .btn-3d {
     width: 5rem;
     height: 5rem;
@@ -162,7 +158,6 @@
 }
 
 @layer components {
-  /* Progress cylinder / bottle style */
   .progress-cylinder-container {
     position: relative;
     width: 3.5rem;
@@ -191,17 +186,6 @@
     width: 100%;
     background: linear-gradient(to top, hsl(var(--primary) / 1), hsl(var(--primary) / 0.85));
     transition: height 0.6s ease-in-out;
-  }
-
-  .progress-cylinder-label {
-    position: absolute;
-    top: 0.6rem;
-    width: 100%;
-    text-align: center;
-    font-size: 0.8rem;
-    color: hsl(var(--foreground));
-    font-weight: 600;
-    pointer-events: none;
   }
 
   @media (min-width: 768px) {
